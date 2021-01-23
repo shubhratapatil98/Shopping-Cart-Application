@@ -1,0 +1,53 @@
+
+<!doctype html>
+<html lang="en">
+  
+<head th:replace="/frag/head"></head>
+
+<body>
+    <nav th:replace="/frag/nav :: nav-admin"></nav>
+
+    <main class="container">
+
+  <div class="starter-template text-center py-5 px-3">
+    <h1 class="display-2">Products</h1>
+    <a href="/admin/products/add" class="btn btn-primary">Add New</a>
+
+    <div th:if="${message}" th:text="${message}" th:class="${'alert '+alertClass}">
+      
+    </div>
+    <div th:if="${!products.empty}">
+        <table class= "table">
+          <tr>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+          <tr th:each="product: ${products}">
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.image}"></td>
+            <td th:text="${product.categoryId}"></td>
+            <td th:text="${product.price}"></td>
+            <td><a th:href="@{'/admin/products/edit/' +${product.id}}">Edit</a></td>
+            <td><a th:href="@{'/admin/products/delete/' +${product.id}}" class="confirmDeletion">Delete</a></td>
+          </tr>
+        </table>
+    </div>
+
+    <div th:unless="${!products.empty}">
+      <h4 class="display-4">There are no products</h4>
+   </div>
+
+  </div>
+
+</main><!-- /.container -->
+
+
+    <div th:replace="/frag/footer"></div>
+
+   
+  </body>
+</html>
