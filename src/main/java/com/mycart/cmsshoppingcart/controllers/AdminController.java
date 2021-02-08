@@ -120,7 +120,7 @@ public class AdminController {
         System.out.println(page + " this is selected page");
         //PageEntity slugExist = pageRepository.findBySlug(page.getId(), slug);
         PageEntity slugExist = pageRepository.findBySlugAndIdNot(slug, page.getId());
-        System.out.println(slugExist + " match found entry-----------------------");
+        System.out.println(slugExist + " match found entry------------------");
 
         if(slugExist != null){
             redirect.addFlashAttribute("message", "Slug exist, choose another");
